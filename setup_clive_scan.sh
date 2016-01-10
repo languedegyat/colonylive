@@ -10,6 +10,13 @@ mkdir -p ~/img_scan
 
 echo "creating config file..."
 
+
+sudo sh -c "cat << EOF >> /etc/fstab
+biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img  /home/morilab/img    nfs4    defaults,auto 0 0
+biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img_scan  /home/morilab/img_scan    nfs4    defaults,auto 0 0
+EOF"
+
+
 cat << EOF > /home/morilab/startup.sh
 #!/bin/bash
 vuescan &
@@ -166,16 +173,10 @@ tar xvf vuex6495.tgz
 sudo ln -s /home/morilab/Vuescan/vuescan /usr/local/bin/vuescan
 
 sudo apt-get update
-sudo apt-get -y install vim mysql-client
+sudo apt-get -y install vim mysql-client zip
 sudo apt-get -y install openssh-server ntpdate xautomation wmctrl 
 sudo apt-get -y install python-numpy python-mysqldb python-opencv
 
-
-
-sudo sh -c "cat << EOF >> /etc/fstab
-biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img  /home/morilab/img    nfs4    defaults,auto 0 0
-biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img_scan  /home/morilab/img_scan    nfs4    defaults,auto 0 0
-EOF"
 
 echo "Done"
 echo "Please reboot"
