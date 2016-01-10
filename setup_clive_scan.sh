@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+# create mountpoint
+mkdir -p ~/img
+mkdir -p ~/img_scan
+
+
 # auto start (GNOME)
 
 echo "creating config file..."
@@ -161,7 +167,15 @@ sudo ln -s /home/morilab/Vuescan/vuescan /usr/local/bin/vuescan
 
 sudo apt-get update
 sudo apt-get -y install vim mysql-client
-sudo apt-get -y install openssh-server ntpdate sshfs xautomation wmctrl 
-sudo apt-get -y install python-numpy python-mysqldb
+sudo apt-get -y install openssh-server ntpdate xautomation wmctrl 
+sudo apt-get -y install python-numpy python-mysqldb python-opencv
+
+
+
+sudo cat << EOF >> /etc/fstab
+biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img  /home/morilab/img    nfs4    defaults,auto 0 0
+biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img_scan  /home/morilab/img_scan    nfs4    defaults,auto 0 0
+EOF
 
 echo "Done"
+echo "Please reboot"
