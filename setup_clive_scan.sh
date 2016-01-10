@@ -172,10 +172,10 @@ sudo apt-get -y install python-numpy python-mysqldb python-opencv
 
 
 
-sudo cat << EOF >> /etc/fstab
+sudo sh -c "cat << EOF >> /etc/fstab
 biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img  /home/morilab/img    nfs4    defaults,auto 0 0
 biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img_scan  /home/morilab/img_scan    nfs4    defaults,auto 0 0
-EOF
+EOF"
 
 echo "Done"
 echo "Please reboot"
