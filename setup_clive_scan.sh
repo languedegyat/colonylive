@@ -1,21 +1,20 @@
 #!/bin/bash
 
 
-# create mountpoint
+# auto mount
+# -------------------
 mkdir -p ~/img
 mkdir -p ~/img_scan
-
-
-# auto start (GNOME)
-
-echo "creating config file..."
-
 
 sudo sh -c "cat << EOF >> /etc/fstab
 biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img  /home/morilab/img    nfs4    defaults,auto 0 0
 biofserv1.naist.jp:/local/pcfiles/mori/Project/GeneticInteraction/img_scan  /home/morilab/img_scan    nfs4    defaults,auto 0 0
 EOF"
 
+
+# auto start in Gnome 
+# ------------------------
+echo "creating config file..."
 
 cat << EOF > /home/morilab/startup.sh
 #!/bin/bash
@@ -39,6 +38,15 @@ Name=gnome-terminal
 Comment[en_US]=
 Comment=
 EOF
+
+
+
+# install Vuescan
+# ------------------------
+cd ~/
+wget http://www.hamrick.com/files/vuex6495.tgz
+tar xvf vuex6495.tgz
+sudo ln -s /home/morilab/Vuescan/vuescan /usr/local/bin/vuescan
 
 
 cat << EOF > ~/.vuescanrc
@@ -163,15 +171,8 @@ EOF
 echo "DONE"
 
 
-echo "installing programs..."
-
-# install programs
-cd ~/
-wget http://www.hamrick.com/files/vuex6495.tgz
-tar xvf vuex6495.tgz
-
-sudo ln -s /home/morilab/Vuescan/vuescan /usr/local/bin/vuescan
-
+# install required programs
+# ------------------------
 sudo apt-get update
 sudo apt-get -y install vim mysql-client zip
 sudo apt-get -y install openssh-server ntpdate xautomation wmctrl 
