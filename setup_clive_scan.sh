@@ -51,9 +51,6 @@ sudo ln -s /home/morilab/Vuescan/vuescan /usr/local/bin/vuescan
 
 cat << EOF > ~/.vuescanrc
 [VueScan]
-SerialNumber=108366525
-CustomerNumber=1749674469
-EmailAddress=hmori@gtc.naist.jp
 EOF
 
 
